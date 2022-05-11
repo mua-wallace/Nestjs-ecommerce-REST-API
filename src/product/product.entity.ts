@@ -21,7 +21,7 @@ export class ProductEntity {
   price: number;
 
   @Column()
-  quantity: string;
+  quantity: number;
 
   @CreateDateColumn()
   createdAt: string;

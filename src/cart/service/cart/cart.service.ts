@@ -38,7 +38,7 @@ export class CartService {
         });
         newItem.user = authUser;
         newItem.item = product;
-        this.cartRepository.save(newItem);
+        // this.cartRepository.save(newItem);
 
         return await this.cartRepository.save(newItem);
       } else {

@@ -1,14 +1,16 @@
 import { Controller, Request, Post, UseGuards, Body } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiCreatedResponse } from '@nestjs/swagger';
+import { UserSignUpDto } from 'src/auth/dto/user-signup.dto';
 import { AuthService } from 'src/auth/service/auth/auth.service';
-import { Users } from 'src/auth/user.entity';
 
 @Controller('api/v1/auth/')
 export class AuthController {
   constructor(private usersService: AuthService) {}
 
+  @ApiCreatedResponse({ description: 'The re' })
   @Post('signup')
-  async signup(@Body() user: Users): Promise<Users> {
+  async signup(@Body() user: UserSignUpDto): Promise<UserSignUpDto> {
     return this.usersService.signup(user);
   }
 
