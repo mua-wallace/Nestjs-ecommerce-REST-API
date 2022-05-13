@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -8,16 +8,11 @@ import { UserSignUpDto } from 'src/auth/dto/user-signup.dto';
 
 @Injectable()
 export class AuthService {
+  [x: string]: any;
   constructor(
     @InjectRepository(Users) private userRepository: Repository<Users>,
     private jwt: JwtService,
   ) {}
-  // async signup(user: Users): Promise<Users> {
-  //   const salt = await bcrypt.genSalt();
-  //   const hash = await bcrypt.hash(user.password, salt);
-  //   user.password = hash;
-  //   return await this.userRepository.save(user);
-  // }
   async signup(user: UserSignUpDto): Promise<UserSignUpDto> {
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(user.password, salt);
